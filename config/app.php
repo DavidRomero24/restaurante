@@ -16,7 +16,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Restaurante'),
+    'name' => env('APP_NAME', 'La Ocañerita'),
 
     /*
     |--------------------------------------------------------------------------
