@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->text('description')->nullable();
-            $table->decimal('precio');
+            $table->decimal('price');
             $table->date('expiration_date')->nullable();
             $table->integer('amount');
             $table->timestamps();

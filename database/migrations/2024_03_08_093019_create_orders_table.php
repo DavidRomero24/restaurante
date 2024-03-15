@@ -16,8 +16,8 @@ return new class extends Migration
             $table->bigInteger('product_id')->unsigned();
             $table->bigInteger('customer_id')->unsigned();
             
-            $table->dateTime('fechas');
-            $table->decimal('valor');
+            $table->dateTime('dates');
+            $table->decimal('value');
             $table->timestamps();
         
             $table->foreign('product_id')
