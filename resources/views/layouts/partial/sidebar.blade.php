@@ -26,14 +26,14 @@
         <li class="nav-item menu-open">
           <a href="home" class="nav-link active">
             <i class="fa fa-home fa-fw" aria-hidden="true"></i>
-            <!-- <i class="nav-icon fas fa-tachometer-alt"></i> -->
             <p>
-              Dashboard
+              Home
             </p>
           </a>
         </li>
-          <a href="#" class="nav-link">
-          <i class="fa-solid fa-utensils-slash" style="color: #ffffff;"></i>
+          <a href="#" class="nav-link ">
+          <i class="fa fa-check fa-fw" aria-hidden="true"></i>
+
             <p>
               Orders
               <i class="right fas fa-angle-left"></i>
@@ -42,19 +42,19 @@
           <ul class="nav nav-treeview">
             <li class="nav-item">
               <a href="pages/charts/chartjs.html" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Customer</p>
+              <i class="fa fa-user-circle" aria-hidden="true"></i>
+              <p>Customer</p>
               </a>
             </li>
             <li class="nav-item">
               <a href="pages/charts/flot.html" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
+              <i class="fa-regular fa-utensils fa"></i>
                 <p>Product</p>
               </a>
             </li>
             <li class="nav-item">
               <a href="pages/charts/inline.html" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
+                <i class="fa fa-list-alt" aria-hidden="true"></i>
                 <p>Order</p>
               </a>
             </li>
