@@ -13,18 +13,18 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('product_id')->unsigned();
-            $table->bigInteger('customer_id')->unsigned();
-            
+            $table->unsignedBigInteger('product_id');
+            $table->unsignedBigInteger('customer_id');
             $table->dateTime('dates');
             $table->decimal('value');
             $table->timestamps();
         
             $table->foreign('product_id')
-                ->refences('id')->on('products');
+                ->references('id')->on('products');
             $table->foreign('customer_id')
                 ->references('id')->on('customers');
         });
+
     }
 
     /**

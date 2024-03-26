@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('address');
             $table->integer('phone_number');
             $table->string('email')->unique();
-            $table->timestamps();
+            // $table->timestamps();
         });
     }
 

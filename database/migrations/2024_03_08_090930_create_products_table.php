@@ -18,7 +18,7 @@ return new class extends Migration
             $table->decimal('price');
             $table->date('expiration_date')->nullable();
             $table->integer('amount');
-            $table->timestamps();
+            // $table->timestamps();
         });
     }
 
