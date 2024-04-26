@@ -18,6 +18,7 @@ class ProductFactory extends Factory
     {
         return [
             'name' => $this->faker->name,
+            'image' => $this->faker->imageUrl(),//Genera una url aleatoria para una imagen
             'price' => $this->faker->randomFloat(2, 0, 1000),
             'description' => $this->faker->sentence,
             'expiration_date' => $this->faker->date(),

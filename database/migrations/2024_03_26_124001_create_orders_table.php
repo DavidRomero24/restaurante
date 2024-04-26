@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('product_id');
+            $table->unsignedBigInteger('product_id')->default();
             $table->unsignedBigInteger('customer_id');
-            $table->dateTime('dates');
-            $table->decimal('value');
+            $table->dateTime('date')->default(now());
+            $table->decimal('price',8,2)->default();
             $table->timestamps();
         
             $table->foreign('product_id')

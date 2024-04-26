@@ -41,19 +41,19 @@
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a href="pages/charts/chartjs.html" class="nav-link">
+              <a href="#" class="nav-link">
               <i class="fa fa-user-circle" aria-hidden="true"></i>
               <p>Customer</p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="pages/charts/flot.html" class="nav-link">
+              <a href="{{route('products.index')}}" class="nav-link">
               <i class="fa-regular fa-utensils fa"></i>
                 <p>Product</p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="pages/charts/inline.html" class="nav-link">
+              <a href="#" class="nav-link">
                 <i class="fa fa-list-alt" aria-hidden="true"></i>
                 <p>Order</p>
               </a>

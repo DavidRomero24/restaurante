@@ -15,12 +15,14 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // Customer::factory(10)->create();
+        Customer::factory(3)->create();
 
-        Product::factory(10)->create();
+        Product::factory(3)->create();
         
-        // Order::factory(10)->create();
+        Order::factory(3)->create();
         
+        // User::factory(3)->create();
 
+        
     }
 }

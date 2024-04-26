@@ -9,9 +9,9 @@ class Order extends Model
 {
     use HasFactory;
 
-    protected $table='ordes';
+    protected $table='orders';
 
-    protected $fillable=['product_id','customer_id','dates','value'];
+    protected $fillable=['product_id','customer_id','date','price'];
 
     protected $guarded=['id','created_at','updated_at'];
 
