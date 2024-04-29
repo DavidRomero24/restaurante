@@ -2,20 +2,19 @@
 
 @section('content')
     <div class="register-box">
-        <div class="card card-outline card-primary">
+        <div class="card card-outline ">
             <div class="card-header text-center">
-                <span class="h1"><b>Panadería</b></span>
-                <img src="{{asset('backend/dist/img/pan-logo.png')}}" class="rounded-circle" alt="" style="width:70%; padding:10px  ">
+                <img src="{{asset('backend/dist/img/logo.png')}}" style="width: 60%; height: auto;" alt="">
             </div>
             <div class="card-body">
-                <p class="login-box-msg">Registrar nuevo usuario</p>
+                <p class="login-box-msg"><b>Register new user</b></p>
 
                 <form method="POST" action="{{ route('register') }}">
                     @csrf
 
                     <div class="input-group mb-3">
                         <input type="text" class="form-control @error('name') is-invalid @enderror" name="name"
-                            value="{{ old('name') }}" required autocomplete="name" autofocus placeholder=Nombre>
+                            value="{{ old('name') }}" required autocomplete="name" autofocus placeholder=Name>
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-user"></span>
@@ -23,7 +22,7 @@
                         </div>
                     </div>
                     <div class="input-group mb-3">
-                        <input type="email" class="form-control" placeholder="Email" name="email"
+                        <input type="email" class="form-control" placeholder="E-mail" name="email"
                             value="{{ old('email') }}" required autocomplete="email">
                         <div class="input-group-append">
                             <div class="input-group-text">
@@ -33,7 +32,7 @@
                     </div>
                     <div class="input-group mb-3">
                         <input type="password" class="form-control @error('password') is-invalid @enderror" name="password"
-                            required autocomplete="new-password" placeholder="Contraseña">
+                            required autocomplete="new-password" placeholder="Password">
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-lock"></span>
@@ -41,7 +40,7 @@
                         </div>
                     </div>
                     <div class="input-group mb-3">
-                        <input type="password" class="form-control" placeholder="Repetir contraseña"
+                        <input type="password" class="form-control" placeholder="Confirm password"
                             name="password_confirmation" required autocomplete="new-password">
                         <div class="input-group-append">
                             <div class="input-group-text">
@@ -52,15 +51,15 @@
                     <div class="row">
                         <!-- /.col -->
                         <div class="col-12">
-                            <button type="submit" class="btn btn-primary btn-block">
-                                {{ __('Registrarme') }}
+                            <button type="submit" class="btn btn-danger btn-block">
+                                {{ __('Register') }}
                             </button>
                         </div>
                         <!-- /.col -->
                     </div>
                 </form>
 
-                <a href="login" class="text-center">Ya tengo una cuenta</a>
+                <a href="login" class="text-center text-danger">I already have an account</a>
             </div>
             <!-- /.form-box -->
         </div><!-- /.card -->

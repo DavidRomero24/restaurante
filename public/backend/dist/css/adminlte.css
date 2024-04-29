@@ -41,6 +41,8 @@
   --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
 
+
+
 *,
 *::before,
 *::after {
@@ -165,7 +167,7 @@ a {
 }
 
 a:hover {
-  color: #0056b3;
+  color: #b30000;
   text-decoration: none;
 }
 
@@ -6860,6 +6862,14 @@ button.bg-info:focus {
   background-color: #117a8b !important;
 }
 
+.place::-moz-placeholder{
+  color: white;
+}
+
+.ne{
+  text-decoration-color: white;
+}
+
 .bg-warning {
   background-color: #ffc107 !important;
 }
@@ -10092,6 +10102,7 @@ button.bg-dark:focus {
 
 .text-center {
   text-align: center !important;
+  
 }
 
 @media (min-width: 576px) {
@@ -34973,7 +34984,7 @@ a.close.disabled, a.disabled.mailbox-attachment-close {
 .register-page {
   -ms-flex-align: center;
   align-items: center;
-  background-color: #da0b0b;
+  background-color: #733F2D;
   display: -ms-flexbox;
   display: flex;
   -ms-flex-direction: column;
