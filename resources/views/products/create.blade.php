@@ -9,7 +9,6 @@
 		<div class="container-fluid">
 		</div>
     </section>
-	@include('layouts.partial')
 	<section class="content">
 		<div class="container-fluid">
 			<div class="row">
@@ -36,14 +35,15 @@
 											</div>
 										</div>
                                         <div class="form-group label-floating">
+											<label class="control-label">Quantity <strong style="color:red;">(*)</strong></label>
+											<input type="text" class="form-control" name="quantity" placeholder="0" autocomplete="off" value="{{ old('quantity') }}">
+										</div>
+                                        <div class="form-group label-floating">
 											<label class="control-label">Price<strong style="color:red;">(*)</strong></label>
-											<input type="text" class="form-control" name="description" placeholder="Price" autocomplete="off" value="{{ old('description') }}">
+											<input type="text" class="form-control" name="price" placeholder="Price" autocomplete="off" value="{{ old('price') }}">
 										</div>
                                         <div class="row">
-										<div class="form-group label-floating">
-											<label class="control-label">amount <strong style="color:red;">(*)</strong></label>
-											<input type="text" class="form-control" name="quantity" placeholder="0" autocomplete="off" value="{{ old('amount') }}">
-										</div>                                        <div class="col-lg-4 col-sm-4 col-md-4 col-xs-12">
+                                        <div class="col-lg-4 col-sm-4 col-md-4 col-xs-12">
                                             <div class="form-group label-floating">
                                                 <label class="control-label">Image</label>
                                                 <input type="file" class="form-control-file" name="image" id="image" >

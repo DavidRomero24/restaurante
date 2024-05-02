@@ -55,9 +55,11 @@ class ProductController extends Controller
 			$product->expiration_date = $request->expiration_date;
 			$product->amount = $request->amount;
 			$product->image = $imagename;
+            $product->status = 1;
+            $product->registerby = $request->user()->id;
 			$product->save();
 
-            return view ('products.index');
+            return redirect()->route ('products.index');
     }
 
     /**
@@ -87,8 +89,16 @@ class ProductController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Product $product)
     {
-        //
+        $product->delete();
+       return redirect()->route('products.index')->with('eliminar','ok');
     }
+    public function changestatusproduct(Request $request)
+	{
+		$product = Product::find($request->product_id);
+		$product->status=$request->status;
+		$product->save();
+	}
+
 }
