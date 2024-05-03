@@ -18,7 +18,9 @@ return new class extends Migration
             $table->string('image')->nullable();
             $table->decimal('price');
             $table->date('expiration_date')->nullable();
-            $table->integer('amount');
+            $table->integer('amount')->default(0);
+            $table->string('status')->nullable();
+            $table->string('registerby')->nullable();
             $table->timestamps();
         });
     }

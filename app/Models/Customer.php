@@ -11,9 +11,9 @@ class Customer extends Model
 
     protected $table='customers';
     
-    protected $fillable=['name','address','phone_number','email'];
+    protected $fillable=['name','identification_document','address','phone_number','email','image','status'];
 
-    protected $guarded=['id','created_at','updated_at'];
+    protected $guarded=['id','status','registerby','created_at','updated_at'];
 
     public function orders(){
         return $this->hasMany(Order::class);
