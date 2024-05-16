@@ -5,8 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Customer;
-use carbon\Carbon;
-use Illuminate\support\Str;
+use Carbon\Carbon;
+use Illuminate\Support\Str;
+use App\Http\Requests\CustomerRequest;
 
 class CustomerController extends Controller
 {
@@ -30,7 +31,7 @@ class CustomerController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(CustomerRequest $request)
     {
         $image = $request->file('image');
 			$slug = str::slug($request->name);
@@ -51,9 +52,9 @@ class CustomerController extends Controller
             $customer = new Customer();
 			$customer->name = $request -> name;
 			$customer->identification_document = $request->identification_document;
-			$customer->addres = $request->addres;
+			$customer->address = $request->address;
 			$customer->phone_number = $request->phone_number;
-			$customer->email = $request->email;
+            $customer->email = $request->email;
 			$customer->image = $imagename;
             $customer->status = 1;
             $customer->registerby = $request->user()->id;
@@ -73,16 +74,15 @@ class CustomerController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Customer $customer)
     {
-        $customer = Customer::findOrFail($id);
-        return view('customers.edit',compact('customer'));
+        return view('customers.edit', compact('customer'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $id)
+    public function update(CustomerRequest $request, $id)
     {
 
 			$customer = Customer::find($id);
@@ -104,29 +104,31 @@ class CustomerController extends Controller
 			}
 
 			$customer->name = $request -> name;
-			$customer->description = $request->description;
-			$customer->amount = $request->amount;
-			$customer->price = $request->price;
+			$customer->identification_document = $request->identification_document;
+			$customer->address = $request->address;
+			$customer->phone_number = $request->phone_number;
+            $customer->email = $request->email;
 			$customer->image = $imagename;
+            $customer->status = 1;
             $customer->registerby = $request->user()->id;
 			$customer->save();
 
             return redirect()->route('customers.index')->with('successMsg','El registro se actualizó exitosamente');
     }
+
     /**
      * Remove the specified resource from storage.
-     */
+     */     
     public function destroy(Customer $customer)
     {
-        $customer -> delete();
-        return redirect()->route('customers.index')->with('Eliminar', 'Ok');
+        $customer->delete();
+       return redirect()->route('customers.index')->with('eliminar','ok');
     }
-    
+
     public function changestatuscustomer(Request $request)
 	{
 		$customer = Customer::find($request->customer_id);
 		$customer->status=$request->status;
 		$customer->save();
 	}
-
 }

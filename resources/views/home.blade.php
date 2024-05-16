@@ -526,9 +526,9 @@
               </div>
               <div class="card-body">
                 <canvas class="chart" id="line-chart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 10
-              </div>
-              <!-- /.card-body -->
-              <div class="card-footer bg-transparent">
+                </div>
+                <!-- /.card-body -->
+                <div class="card-footer bg-transparent">
                 <div class="row">
                   <div class="col-4 text-center">
                     <input type="text" class="knob" data-readonly="true" value="20" data-width="60" data-height="60"

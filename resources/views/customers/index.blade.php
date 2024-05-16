@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title','list of products')
+@section('title','list of customers')
 
 @section('content')
 
@@ -18,7 +18,7 @@
 						<div class="card-header bg-secondary" style="font-size: 1.75rem;font-weight: 500; line-height: 1.2; margin-bottom: 0.5rem;">
 							@yield('title')
 							
-								<a href="{{ route('products.create') }}" class="btn btn-primary float-right" title="Nuevo"><i class="fas fa-plus nav-icon"></i></a>
+								<a href="{{ route('customers.create') }}" class="btn btn-primary float-right" title="Create"><i class="fas fa-plus nav-icon"></i></a>
 							
 						</div>
 						<div class="card-body">
@@ -27,58 +27,47 @@
 									<tr>
                                         <th>Id</th>
                                         <th>Name</th>
-                                        <th>Description</th>
+										<th>Identification Document</th>
+                                        <th>Address</th>
+                                        <th>Phone Number</th>
+                                        <th>Email</th>
                                         <th>Image</th>
-                                        <th>Price</th>
-                                        <th>expiration date</th>
-                                        <th>amount</th>
                                         <th>status</th>
                                         <th>Action</th>
 									</tr>
 								</thead>
 								<tbody>
-									@foreach($products as $product)
+									@foreach($customers as $customer)
 									<tr>
-                                        <td>{{ $product -> id}}</td>
-                                        <td>{{ $product -> name}}</td>
-                                        <td>{{ $product -> description}}</td>
+                                        <td>{{ $customer -> id}}</td>
+                                        <td>{{ $customer -> name}}</td>
+                                        <td>{{ $customer -> identification_document}}</td>
+										<td>{{ $customer -> address}}</td>
+                                        <td>{{ $customer -> phone_number}}</td>
+                                        <td>{{ $customer -> email}}</td>
 										<td>
-											@if ($product->image != null)
+											@if ($customer->image != null)
 												<center>
 													<p><img class="img-responsive img-thumbnail"
-														src="{{ asset('uploads/products/' . $product->image) }}" 
+														src="{{ asset('uploads/customers/' . $customer->image) }}" 
 														style="height: 70px; width: 70px;" alt=""></p>
 												</center>
-											@elseif ($product->image == null)
+											@elseif ($customer->image == null)
 											@endif
 										</td>
-                                        <!-- <td>{{ $product -> image}}</td> -->
-                                        <td>{{ $product -> price}}</td>
-                                        <td>{{ $product -> expiration_date}}</td>
-                                        <td>{{ $product -> amount}}</td>
+                                        
 										<td>
-											<input data-id="{{$product->id}}" class="toggle-class" type="checkbox" data-onstyle="success" data-offstyle="danger" 
-											data-toggle="toggle" data-on="Active" data-off="Inactive" {{ $product->status ? 'checked' : '' }}>
+											<input data-id="{{$customer->id}}" class="toggle-class" type="checkbox" data-onstyle="success" data-offstyle="danger" 
+											data-toggle="toggle" data-on="Active" data-off="Inactive" {{ $customer->status ? 'checked' : '' }}>
 										</td>
 										<td>
-											<a href="{{ route('products.edit',$product->id) }}" class="btn btn-info btn-sm" title="Edit"><i class="fas fa-pencil-alt"></i></a>
-											<form class="d-inline delete-form" action="{{ route('products.destroy', $product) }}"  method="POST">
+											<a href="{{ route('customers.edit',$customer->id) }}" class="btn btn-info btn-sm" title="Edit"><i class="fas fa-pencil-alt"></i></a>
+											<form class="d-inline delete-form" action="{{ route('customers.destroy', $customer) }}"  method="POST">
 												@csrf
 												@method('DELETE')
 												<button type="submit" class="btn btn-danger btn-sm" title="Delete"><i class="fas fa-trash-alt"></i></button>
 											</form>
 										</td>
-										<!-- <td>
-										
-                                            <a href="{{route('products.edit', $product->id)}}" class="btn btn-info btn-sm bg-white mb-1 border-2 border-success" tittle="Edit" ><i class="fas fa-pencil-alt"></i></a>
-										
-                                        	<form class="d-inline delete-form" action="{{route('products.destroy', $product)}}" method="$_POST">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-danger btn-sm border-2 bg-red" title="Delete"><i class="fas fa-trash-alt" ></i></button>
-                                        </form>
-										
-										</td> -->
 									</tr>
 									@endforeach
 								</tbody>
@@ -100,12 +89,12 @@
 		$(function() {
 			$('.toggle-class').change(function() {
 				var status = $(this).prop('checked') == true ? 1 : 0;
-				var product_id = $(this).data('id');
+				var customer_id = $(this).data('id');
 				$.ajax({
 					type: "GET",
 					dataType: "json",
-					url: 'changestatusproduct',
-					data: {'status': status, 'product_id': product_id},
+					url: 'changestatuscustomer',
+					data: {'status': status, 'customer_id': customer_id},
 					success: function(data){
 					  console.log(data.success)
 					}

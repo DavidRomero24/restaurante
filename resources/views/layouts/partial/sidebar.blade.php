@@ -51,7 +51,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a href="#" class="nav-link">
+              <a href="{{route('orders.index')}}" class="nav-link">
                 <i class="fa fa-list-alt" aria-hidden="true"></i>
                 <p>Order</p>
               </a>

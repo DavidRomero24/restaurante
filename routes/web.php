@@ -3,8 +3,9 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
+use App\Models\Customer;
 use App\Http\Controllers\CustomerController;
-
+use App\Http\Controllers\OrderController;
 
 
 /*
@@ -28,10 +29,12 @@ Route::group(['middleware'=>['auth']], function(){
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
     //products
     Route::resource('products', ProductController::class);
-    Route::resource('customers', CustomerController::class);
-
     Route::get('changestatusproduct', [ProductController::class, 'changestatusproduct'])->name('changestatusproduct');
+    //customers
+    Route::resource('customers', CustomerController::class);
     Route::get('changestatuscustomer', [CustomerController::class, 'changestatuscustomer'])->name('changestatuscustomer');
+    //order
+    Route::resource('orders', OrderController::class);
 });
 
 Route::get('/about', function () { 

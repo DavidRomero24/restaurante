@@ -11,9 +11,9 @@ class Order extends Model
 
     protected $table='orders';
 
-    protected $fillable=['product_id','customer_id','date','price'];
+    protected $fillable=['product_id','customer_id','date','price','status'];
 
-    protected $guarded=['id','created_at','updated_at'];
+    protected $guarded=['id','status', 'registerby','created_at','updated_at'];
 
     public function customer(){
         return $this->belongsTo(Customer::class);
