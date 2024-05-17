@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title','list of customers')
+@section('title','List of customers')
 
 @section('content')
 
@@ -15,10 +15,10 @@
 			<div class="row">
 				<div class="col-12">
 					<div class="card">
-						<div class="card-header bg-secondary" style="font-size: 1.75rem;font-weight: 500; line-height: 1.2; margin-bottom: 0.5rem;">
+						<div class="card-header" style="font-size: 1.75rem;font-weight: 500; line-height: 1.2; margin-bottom: 0.5rem; background-color: #733F2D; color:white;">
 							@yield('title')
 							
-								<a href="{{ route('customers.create') }}" class="btn btn-primary float-right" title="Create"><i class="fas fa-plus nav-icon"></i></a>
+								<a href="{{ route('customers.create') }}" class="btn btn-light float-right" title="Create"><i class="fas fa-plus nav-icon" style="color: #733F2D;"></i></a>
 							
 						</div>
 						<div class="card-body">
@@ -61,7 +61,7 @@
 											data-toggle="toggle" data-on="Active" data-off="Inactive" {{ $customer->status ? 'checked' : '' }}>
 										</td>
 										<td>
-											<a href="{{ route('customers.edit',$customer->id) }}" class="btn btn-info btn-sm" title="Edit"><i class="fas fa-pencil-alt"></i></a>
+											<a href="{{ route('customers.edit',$customer->id) }}" class="btn btn-success btn-sm" title="Edit"><i class="fas fa-pencil-alt"></i></a>
 											<form class="d-inline delete-form" action="{{ route('customers.destroy', $customer) }}"  method="POST">
 												@csrf
 												@method('DELETE')
@@ -143,14 +143,14 @@
 							"sEmptyTable": "No hay datos disponibles en la tabla",
 							"sInfo": "Mostrando START a END de TOTAL entradas",
 							"sInfoEmpty": "Mostrando 0 a 0 de 0 entradas",
-							"sSearch": "Buscar:",
+							"sSearch": "Search:",
 							"sZeroRecords": "No se encontraron registros coincidentes en la tabla",
 							"sInfoFiltered": "(Filtrado de MAX entradas totales)",
 							"oPaginate": {
-								"sFirst": "Primero",
-								"sPrevious": "Anterior",
-								"sNext": "Siguiente",
-								"sLast": "Ultimo"
+								"sFirst": "First",
+								"sPrevious": "Previous",
+								"sNext": "Next",
+								"sLast": "Last"
 							},
 							/*"buttons": {
 								"print": "Imprimir",

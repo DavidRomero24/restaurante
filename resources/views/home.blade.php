@@ -30,9 +30,9 @@
             <!-- small box -->
             <div class="small-box bg-info">
               <div class="inner">
-                <h3>150</h3>
+                <h3>{{$productCount}}</h3>
 
-                <p>New Orders</p>
+                <p>Amount products</p>
               </div>
               <div class="icon">
                 <i class="ion ion-bag"></i>
@@ -45,9 +45,9 @@
             <!-- small box -->
             <div class="small-box bg-success">
               <div class="inner">
-                <h3>53<sup style="font-size: 20px">%</sup></h3>
+                <h3>{{ $customerCount }}<sup style="font-size: 20px"></sup></h3>
 
-                <p>Bounce Rate</p>
+                <p>Amount customers</p>
               </div>
               <div class="icon">
                 <i class="ion ion-stats-bars"></i>
@@ -60,9 +60,9 @@
             <!-- small box -->
             <div class="small-box bg-warning">
               <div class="inner">
-                <h3>44</h3>
+                <h3>{{$orderCount}}</h3>
 
-                <p>User Registrations</p>
+                <p>Amount orders</p>
               </div>
               <div class="icon">
                 <i class="ion ion-person-add"></i>
@@ -75,7 +75,7 @@
             <!-- small box -->
             <div class="small-box bg-danger">
               <div class="inner">
-                <h3>65</h3>
+                <h3>{{$ventaTotalDia}}/{{$ventaTotalDia}}</h3>
 
                 <p>Unique Visitors</p>
               </div>
@@ -113,10 +113,9 @@
               <div class="card-body">
                 <div class="tab-content p-0">
                   <!-- Morris chart - Sales -->
-                  <div class="chart tab-pane active" id="revenue-chart"
-                       style="position: relative; height: 300px;">
-                      <canvas id="revenue-chart-canvas" height="300" style="height: 300px;"></canvas>
-                   </div>
+                  <div class="chart tab-pane active" id="revenue-chart" style="position: relative; height: 300px;">
+                    <canvas id="revenue-chart-canvas" height="300" style="height: 300px;"></canvas>
+                  </div>
                   <div class="chart tab-pane" id="sales-chart" style="position: relative; height: 300px;">
                     <canvas id="sales-chart-canvas" height="300" style="height: 300px;"></canvas>
                   </div>
@@ -355,7 +354,7 @@
                       <i class="fas fa-ellipsis-v"></i>
                     </span>
                     <!-- checkbox -->
-                    <div  class="icheck-primary d-inline ml-2">
+                    <div class="icheck-primary d-inline ml-2">
                       <input type="checkbox" value="" name="todo1" id="todoCheck1">
                       <label for="todoCheck1"></label>
                     </div>
@@ -374,7 +373,7 @@
                       <i class="fas fa-ellipsis-v"></i>
                       <i class="fas fa-ellipsis-v"></i>
                     </span>
-                    <div  class="icheck-primary d-inline ml-2">
+                    <div class="icheck-primary d-inline ml-2">
                       <input type="checkbox" value="" name="todo2" id="todoCheck2" checked>
                       <label for="todoCheck2"></label>
                     </div>
@@ -390,7 +389,7 @@
                       <i class="fas fa-ellipsis-v"></i>
                       <i class="fas fa-ellipsis-v"></i>
                     </span>
-                    <div  class="icheck-primary d-inline ml-2">
+                    <div class="icheck-primary d-inline ml-2">
                       <input type="checkbox" value="" name="todo3" id="todoCheck3">
                       <label for="todoCheck3"></label>
                     </div>
@@ -406,7 +405,7 @@
                       <i class="fas fa-ellipsis-v"></i>
                       <i class="fas fa-ellipsis-v"></i>
                     </span>
-                    <div  class="icheck-primary d-inline ml-2">
+                    <div class="icheck-primary d-inline ml-2">
                       <input type="checkbox" value="" name="todo4" id="todoCheck4">
                       <label for="todoCheck4"></label>
                     </div>
@@ -422,7 +421,7 @@
                       <i class="fas fa-ellipsis-v"></i>
                       <i class="fas fa-ellipsis-v"></i>
                     </span>
-                    <div  class="icheck-primary d-inline ml-2">
+                    <div class="icheck-primary d-inline ml-2">
                       <input type="checkbox" value="" name="todo5" id="todoCheck5">
                       <label for="todoCheck5"></label>
                     </div>
@@ -438,7 +437,7 @@
                       <i class="fas fa-ellipsis-v"></i>
                       <i class="fas fa-ellipsis-v"></i>
                     </span>
-                    <div  class="icheck-primary d-inline ml-2">
+                    <div class="icheck-primary d-inline ml-2">
                       <input type="checkbox" value="" name="todo6" id="todoCheck6">
                       <label for="todoCheck6"></label>
                     </div>
@@ -528,31 +527,28 @@
                 <canvas class="chart" id="line-chart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 10
                 </div>
                 <!-- /.card-body -->
-                <div class="card-footer bg-transparent">
-                <div class="row">
-                  <div class="col-4 text-center">
-                    <input type="text" class="knob" data-readonly="true" value="20" data-width="60" data-height="60"
-                           data-fgColor="#39CCCC">
+                <div class=" card-footer bg-transparent">
+                  <div class="row">
+                    <div class="col-4 text-center">
+                      <input type="text" class="knob" data-readonly="true" value="20" data-width="60" data-height="60" data-fgColor="#39CCCC">
 
-                    <div class="text-white">Mail-Orders</div>
-                  </div>
-                  <!-- ./col -->
-                  <div class="col-4 text-center">
-                    <input type="text" class="knob" data-readonly="true" value="50" data-width="60" data-height="60"
-                           data-fgColor="#39CCCC">
+                      <div class="text-white">Mail-Orders</div>
+                    </div>
+                    <!-- ./col -->
+                    <div class="col-4 text-center">
+                      <input type="text" class="knob" data-readonly="true" value="50" data-width="60" data-height="60" data-fgColor="#39CCCC">
 
-                    <div class="text-white">Online</div>
-                  </div>
-                  <!-- ./col -->
-                  <div class="col-4 text-center">
-                    <input type="text" class="knob" data-readonly="true" value="30" data-width="60" data-height="60"
-                           data-fgColor="#39CCCC">
+                      <div class="text-white">Online</div>
+                    </div>
+                    <!-- ./col -->
+                    <div class="col-4 text-center">
+                      <input type="text" class="knob" data-readonly="true" value="30" data-width="60" data-height="60" data-fgColor="#39CCCC">
 
-                    <div class="text-white">In-Store</div>
+                      <div class="text-white">In-Store</div>
+                    </div>
+                    <!-- ./col -->
                   </div>
-                  <!-- ./col -->
-                </div>
-                <!-- /.row -->
+                  <!-- /.row -->
               </div>
               <!-- /.card-footer -->
             </div>
@@ -571,7 +567,7 @@
                   <!-- button with a dropdown -->
                   <div class="btn-group">
                     <button type="button" class="btn btn-success btn-sm dropdown-toggle" data-toggle="dropdown" data-offset="-5
-                      <i class="fas fa-bars"></i>
+                      <i class=" fas fa-bars"></i>
                     </button>
                     <div class="dropdown-menu" role="menu">
                       <a href="#" class="dropdown-item">Add new event</a>

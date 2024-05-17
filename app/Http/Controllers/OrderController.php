@@ -19,8 +19,7 @@ class OrderController extends Controller
      */
     public function index()
     {
-        $orders=Order::select('customers.name', 'customers.identification_document','orders.date','orders.price','orders.status')
-        -> join ('customers','customer_id','=','orders.customer_id')->get();
+        $orders=Order::all();
         return view('orders.index', compact('orders'));
     }
 
@@ -42,37 +41,16 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        DB::beginTransaction();
-        try {
             $order = new Order();
+            // $order->product_id = $request -> product_id;
+			// $order->customer_id = $request->customer_id;
+			$order->date = $request->date;
+			$order->price = $request->price;
+            $order->status = 1;
+            $order->registerby = $request->user()->id;
+			$order->save();
 
-            $order -> customer_id = $request->customer_id;
-            $order -> date = $request->date;
-            $order -> price = $request->price;
-            $order -> status = $request->status;
-            $order -> registerby = $request->registerby;
-            $order -> save();
-
-            $idorder= $order ->id;
-            
-            $cont = 0;
-            
-            //TODO: ARREGLAR ESTA PARTE
-            // while ($cont < count($item)) {
-            //     $detailorders = new DetailOrder();
-            //     $detailorders -> order_id= $idorder;
-            //     $detailorders -> product_id= $idproduct;
-            //     $detailorders -> quantity= $quantity;
-            //     $detailorders -> subtotal = $subtotal;                
-
-            // }
-            DB::commit();
-            return redirect()->route('orders.index')->with('successMsg', 'Exitoso');
-
-        } catch (Exception $e) {
-            return redirect()->back()->with('successMsg', 'Error to register the info');
-            DB::rollBack();
-        }
+            return redirect()->route('orders.index')->with('successMsg','El registro se actualizó exitosamente');
     }
 
     /**
@@ -86,24 +64,46 @@ class OrderController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Order $order)
     {
-        //
+        return view('orders.edit', compact('order'));
+        
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(OrderRequest $request, $id)
     {
-        //
+
+			$order = Order::find($id);
+			
+			// $image = $request->file('image');
+			// $slug = str::slug($request->name);
+
+			// $order->product_id = $request -> product_id;
+			// $order->customer_id = $request->customer_id;
+			$order->date = $request->date;
+			$order->price = $request->price;
+            $order->status = 1;
+            $order->registerby = $request->user()->id;
+			$order->save();
+
+            return redirect()->route('orders.index')->with('successMsg','El registro se actualizó exitosamente');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Order $order)
     {
-        //
+        $order -> delete();
+        return redirect()->route('orders.index')->with('Eliminar', 'Ok');
     }
+    public function changestatuscustomer(Request $request)
+	{
+		$order = Order::find($request->order_id);
+		$order->status=$request->status;
+		$order->save();
+	}
 }
