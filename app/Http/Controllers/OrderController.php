@@ -8,6 +8,7 @@ use App\Models\Order;
 use App\Models\Product;
 use App\Models\User;
 use App\Http\Requests\OrderRequest;
+use App\Models\OrderDetail;
 use Carbon\Carbon;
 use Exception;
 use Illuminate\Support\Facades\DB;
@@ -19,8 +20,25 @@ class OrderController extends Controller
      */
     public function index()
     {
-        $orders=Order::all();
+        // Obtener todas las órdenes junto con la información del cliente.
+        $orders = Order::with('customer')->get();
+    
+        // Retornar la vista y pasar los datos.
         return view('orders.index', compact('orders'));
+        // $orders=Order::all();
+        // $orders = Order::select('customers.name', 'customers.identification_document', 'orders.id', 'orders.total', 'orders.date','orders.status','orders.registered_by')
+        //     ->join('customers', 'orders.customer_id', '=', 'customers.id')
+        //     ->get();
+        // return view('orders.index', compact('orders'));
+
+        //$sales = Sale::select('customers.first_name','customers.identification_document', 'sales.sale_date','sales.total_sale','sales.status')
+     //-> join ('customers', 'customer_id', '=', 'sales.customer_id')->get();
+        //$sales = Sale::with('customer')->get();
+
+        // $orders = Order::select('customers.name', 'customers.identification_document', 'orders.id', 'orders.price', 'orders.date','orders.status','orders.registerby')
+        //     ->join('customers', 'orders.customer_id', '=', 'customers.id')
+        //     ->get();
+        // return view('orders.index', compact('orders'));
     }
 
     /**
@@ -28,8 +46,8 @@ class OrderController extends Controller
      */
     public function create()
     {
-        $products = Product::where('status', '=', '1')->orderBy('name')->get();
-        $customers = Customer::where('status', '=', '1')->orderBy('name')->get();
+        $products = Product::all();
+        $customers = Customer::all();
         $date = Carbon::now();
         $date = $date->format('Y-m-d');
 
@@ -39,68 +57,110 @@ class OrderController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
-    {
-            $order = new Order();
-            // $order->product_id = $request -> product_id;
-			// $order->customer_id = $request->customer_id;
-			$order->date = $request->date;
-			$order->price = $request->price;
-            $order->status = 1;
-            $order->registerby = $request->user()->id;
-			$order->save();
+    public function store(OrderRequest $request)
+    {   
+        
+        $validated = $request->validate([
+            'customer' => 'required|exists:customers,id',
+            'date' => 'required|date',
+            'orderDetails' => 'required|json',
+        ]);
 
-            return redirect()->route('orders.index')->with('successMsg','El registro se actualizó exitosamente');
+        $orderDetails = json_decode($validated['orderDetails'], true);
+        $total = array_reduce($orderDetails, function ($carry, $item) {
+            return $carry + $item['subtotal'];
+        }, 0);
+
+        $order = Order::create([
+            'customer_id' => $validated['customer'],
+            'date' => $validated['date'],
+            'total' => $total,
+        ]);
+
+        foreach ($orderDetails as $detail) {
+            OrderDetail::create([
+                'order_id' => $order->id,
+                'product_id' => $detail['product_id'],
+                'amount' => $detail['amount'],
+                'price' => $detail['price'],
+                'subtotal' => $detail['subtotal'],
+            ]);
+        }
+
+        return redirect()->route('orders.index')->with('success', 'Order created successfully.');
+    
+        
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
-    {
-        //
-    }
+    // app/Http/Controllers/OrderController.php
+
+public function show($id)
+{
+
+    
+
+        $order = Order::with(['customer', 'orderDetails.product'])->findOrFail($id);
+        return view('orders.show', compact('order'));
+
+
+}
+
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Order $order)
-    {
-        return view('orders.edit', compact('order'));
-        
-    }
+    public function edit($id)
+{
+    // $order = Order::with('orderDetails')->findOrFail($id);
+    // $customers = Customer::all();
+    // $products = Product::all();
+
+    // return view('orders.edit', compact('order', 'customers','products'));
+}
+
+
+
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(OrderRequest $request, $id)
-    {
+    public function update(Request $request, $id)
+{
+    $order = Order::findOrFail($id);
+    $order->customer_id = $request->input('customer');
+    $order->date = $request->input('date');
+    $order->product_id = $request->input('product');
+    // Update other order details as needed
 
-			$order = Order::find($id);
-			
-			// $image = $request->file('image');
-			// $slug = str::slug($request->name);
+    // Save the updated order
+    $order->save();
 
-			// $order->product_id = $request -> product_id;
-			// $order->customer_id = $request->customer_id;
-			$order->date = $request->date;
-			$order->price = $request->price;
-            $order->status = 1;
-            $order->registerby = $request->user()->id;
-			$order->save();
+    // Redirect back to the orders index page or wherever you want
+    return redirect()->route('orders.index')->with('success', 'Order updated successfully');
+}
 
-            return redirect()->route('orders.index')->with('successMsg','El registro se actualizó exitosamente');
-    }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Order $order)
+    public function destroy($id)
     {
-        $order -> delete();
+        $order = Order::findOrFail($id);
+        
+        // Eliminar los detalles del pedido asociados
+        $order->orderDetails()->delete();
+        
+        // Eliminar el pedido
+        $order->delete();
+
         return redirect()->route('orders.index')->with('Eliminar', 'Ok');
+        // $order -> delete();
+        // return redirect()->route('orders.index')->with('Eliminar', 'Ok');
     }
-    public function changestatuscustomer(Request $request)
+    public function changestatusorder(Request $request)
 	{
 		$order = Order::find($request->order_id);
 		$order->status=$request->status;

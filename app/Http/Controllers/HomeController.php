@@ -27,19 +27,19 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $fecha = Carbon::now();
-        $date = $fecha->format("Y-M-D");
+        $date = Carbon::now();
+        $date = $date->format("Y-M-D");
 
-        $ventaCountDia = Order::whereDate('date','=',Carbon::now()->format('Y-M-D'))->get()->count("id");
-        $ventaTotalDia = Order::whereDate('date','=',Carbon::now()->format('Y-M-D'))->get()->sum("total");
+        $orderCountDay = Order::whereDate('date','=',Carbon::now()->format('Y-M-D'))->get()->count("id");
+        $orderTotalDay = Order::whereDate('date','=',Carbon::now()->format('Y-M-D'))->get()->sum("total");
         
-        $ventaCountMonth = Order::whereMonth('date','=',date('m'))->get()->count("id");
-        $ventaTotalMonth = Order::whereMonth('date','=',date('m'))->get()->sum("total");
+        $orderCountMonth = Order::whereMonth('date','=',date('m'))->get()->count("id");
+        $orderTotalMonth = Order::whereMonth('date','=',date('m'))->get()->sum("total");
 
         $productCount = Product::where('status','=','1')->count();
         $customerCount = Customer::where('status','=','1')->count();
         $orderCount = Order::count();
 
-        return view('home',compact('productCount','customerCount','orderCount','ventaCountDia','ventaTotalDia','ventaCountMonth','ventaTotalMonth'));
+        return view('home',compact('productCount','customerCount','orderCount','orderCountDay','orderTotalDay','orderCountMonth','orderTotalMonth'));
     }
 }

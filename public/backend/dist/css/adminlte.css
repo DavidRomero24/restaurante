@@ -5141,8 +5141,8 @@ input[type="button"].btn-block {
 .page-item.active .page-link {
   z-index: 3;
   color: #fff;
-  background-color: #733F2D;
-  border-color: #733F2D;
+  background-color: #A6774E;
+  border-color: #A6774E;
 }
 
 .page-item.disabled .page-link {
@@ -34984,7 +34984,7 @@ a.close.disabled, a.disabled.mailbox-attachment-close {
 .register-page {
   -ms-flex-align: center;
   align-items: center;
-  background-color: #733F2D;
+  background-color: #A6774E;
   display: -ms-flexbox;
   display: flex;
   -ms-flex-direction: column;

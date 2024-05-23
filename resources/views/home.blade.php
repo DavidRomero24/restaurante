@@ -47,7 +47,7 @@
               <div class="inner">
                 <h3>{{ $customerCount }}<sup style="font-size: 20px"></sup></h3>
 
-                <p>Amount customers</p>
+                <p>Registrations</p>
               </div>
               <div class="icon">
                 <i class="ion ion-stats-bars"></i>
@@ -60,9 +60,9 @@
             <!-- small box -->
             <div class="small-box bg-warning">
               <div class="inner">
-                <h3>{{$orderCount}}</h3>
+                <h3>{{$orderCountDay}} / {{$orderTotalDay}}</h3>
 
-                <p>Amount orders</p>
+                <p>Sales Today</p>
               </div>
               <div class="icon">
                 <i class="ion ion-person-add"></i>
@@ -75,7 +75,7 @@
             <!-- small box -->
             <div class="small-box bg-danger">
               <div class="inner">
-                <h3>{{$ventaTotalDia}}/{{$ventaTotalDia}}</h3>
+                <h3>{{$orderCountMonth}} / {{$orderTotalMonth}}</h3>
 
                 <p>Unique Visitors</p>
               </div>

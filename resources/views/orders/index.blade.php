@@ -6,62 +6,59 @@
 
 <div class="content-wrapper">
     <section class="content-header">
-		<div class="container-fluid">
-		</div>
+        <div class="container-fluid">
+        </div>
     </section>
     <section class="content">
-		<div class="container-fluid">
-			<div class="row">
-				<div class="col-12">
-					<div class="card">
-						<div class="card-header" style="background-color: #733F2D; color:white; font-size: 1.75rem;font-weight: 500; line-height: 1.2; margin-bottom: 0.5rem;">
-							@yield('title')
-								<a href="{{ route('orders.create') }}" class="btn btn-light float-right" style="color: #733F2D" title="Create"><i class="fas fa-plus nav-icon"></i></a>
-						</div>
-						<div class="card-body">
-							<table id="example1" class="table table-bordered table-hover" style="width:100%">
-								<thead class="text-primary">
-									<tr>
-										<th width="10px">ID</th>
-										<th>Name</th>
-										<th>Document</th>
-										<th>Date</th>
-										<th>Price</th>
-										<th>Status</th>
-										<th width="50px">Acción</th>
-									</tr>
-								</thead>
-								<tbody>
-									@foreach($orders as $order)
-									<tr>
-										<td>{{ $order -> id}}</td>
-                    					<td>{{ $order -> customer -> name}}</td>
-										<td>{{ $order -> customer -> identification_document}}</td>
-                    					<td>{{ $order -> date}}</td>
-                    					<td>{{ $order -> price}}</td>
-										<td>
-											<input data-id="{{$order->id}}" class="toggle-class" type="checkbox" data-onstyle="success" data-offstyle="danger" data-toggle="toggle" data-on="Active" data-off="Inactive" {{ $order->status ? 'checked' : '' }}>
-										</td>
-										<td>
-											<!-- <a href="{{ route('orders.edit',$order->id) }}" class="btn btn-success btn-sm" title="Edit"><i class="fas fa-pencil-alt"></i></a> -->
-
-											<form class="d-inline delete-form" action="{{ route('orders.destroy', $order) }}"  method="POST">
-												@csrf
-												@method('DELETE')
-												<button type="submit" class="btn btn-danger btn-sm" title="Delete"><i class="fas fa-trash-alt"></i></button>
-											</form>
-										</td>
-									</tr>
-									@endforeach
-								</tbody>
-							</table>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header" style="background-color: #A6774E; color: white; font-size: 1.75rem; font-weight: 500; line-height: 1.2; margin-bottom: 0.5rem;">
+                            @yield('title')
+                            <a href="{{ route('orders.create') }}" class="btn btn-light float-right" style="color: #A6774E" title="Create"><i class="fas fa-plus nav-icon"></i></a>
+                        </div>
+                        <div class="card-body">
+                            <table id="example1" class="table table-bordered table-hover" style="width: 100%">
+                                <thead class="text-primary">
+                                    <tr>
+                                        <th width="10px">ID</th>
+                                        <th>Name</th>
+                                        <th>Document</th>
+                                        <th>Date</th>
+                                        <th>Status</th>
+                                        <th width="50px">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach($orders as $order)
+                                    <tr>
+                                        <td>{{ $order->id }}</td>
+                                        <td>{{ $order->customer->name }}</td>
+                                        <td>{{ $order->customer->identification_document }}</td>
+                                        <td>{{ $order->date }}</td>
+                                        <td>
+                                            <input data-id="{{ $order->id }}" class="toggle-class" type="checkbox" data-onstyle="success" data-offstyle="danger" data-toggle="toggle" data-on="Active" data-off="Inactive" {{ $order->status ? 'checked' : '' }}>
+                                        </td>
+                                        <td>
+                                            <a href="{{ route('orders.show', $order->id) }}" class="btn btn-sm" title="Edit" style="background-color: #A6774E" ><i class="fas fa-eye"></i>											</a>
+                                            <form class="d-inline delete-form" action="{{ route('orders.destroy', $order) }}" method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-danger btn-sm" title="Delete"><i class="fas fa-trash-alt"></i></button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
- </div>
+</div>
 @endsection
 
 @push('scripts')

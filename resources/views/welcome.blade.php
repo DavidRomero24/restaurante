@@ -16,7 +16,7 @@
         </style>
     </head>
     <body class="antialiased " >
-        <div style="background-color: #733F2D; " 
+        <div style="background-color: #A6774E; " 
         class="relative sm:flex sm:justify-center sm:items-center min-h-screen "
         >
             <div class="ne " style="align-content: center;">

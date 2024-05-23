@@ -15,10 +15,10 @@
 			<div class="row">
 				<div class="col-12">
 					<div class="card">
-						<div class="card-header" style="font-size: 1.75rem;font-weight: 500; line-height: 1.2; margin-bottom: 0.5rem; background-color: #733F2D; color:white;">
+						<div class="card-header" style="font-size: 1.75rem;font-weight: 500; line-height: 1.2; margin-bottom: 0.5rem; background-color: #A6774E; color:white;">
 							@yield('title')
 							
-								<a href="{{ route('customers.create') }}" class="btn btn-light float-right" title="Create"><i class="fas fa-plus nav-icon" style="color: #733F2D;"></i></a>
+								<a href="{{ route('customers.create') }}" class="btn btn-light float-right" title="Create"><i class="fas fa-plus nav-icon" style="color: #A6774E;"></i></a>
 							
 						</div>
 						<div class="card-body">
@@ -61,7 +61,7 @@
 											data-toggle="toggle" data-on="Active" data-off="Inactive" {{ $customer->status ? 'checked' : '' }}>
 										</td>
 										<td>
-											<a href="{{ route('customers.edit',$customer->id) }}" class="btn btn-success btn-sm" title="Edit"><i class="fas fa-pencil-alt"></i></a>
+											<a href="{{ route('customers.edit',$customer->id) }}" class="btn btn-success btn-sm" title="Edit"><i class="fas fa-pencil-alt" style="justify-content: center;"></i></a>
 											<form class="d-inline delete-form" action="{{ route('customers.destroy', $customer) }}"  method="POST">
 												@csrf
 												@method('DELETE')
@@ -139,7 +139,7 @@
 				//"buttons": ["excel", "pdf", "print", "colvis"],
 				"language": 
 						{
-							"sLengthMenu": "Mostrar MENU entradas",
+							"sLengthMenu": "Show MENU entries",
 							"sEmptyTable": "No hay datos disponibles en la tabla",
 							"sInfo": "Mostrando START a END de TOTAL entradas",
 							"sInfoEmpty": "Mostrando 0 a 0 de 0 entradas",

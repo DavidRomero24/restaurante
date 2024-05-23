@@ -33,18 +33,18 @@
         </div>
         <div class="row">
             <div class="col-6">
-                <button type="submit" class="btn btn-danger btn-block ">Ingresar</button>
+                <button type="submit" class="btn btn-block " style="background-color: #A6774E;" >Ingresar</button>
                 
             </div>
             <div class="col-6">
-                <a href="{{ route('register') }}" class="btn btn-danger btn-block bg-red">Registro</a>
+                <a href="{{ route('register') }}" class="btn btn-block " style="background-color: #A6774E;" >Registro</a>
             </div>
         </div>
         <div class="row">
             <div class="col-12">
                 <p class="mb-1 mt-2">
                     @if (Route::has('password.request'))
-                    <a class=" text-red" href="{{ route('password.request') }}">Olvidé mi contraseña</a>
+                    <a style="color: #A6774E;" href="{{ route('password.request') }}">Olvidé mi contraseña</a>
                     @endif
                 </p>
             </div>

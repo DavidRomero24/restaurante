@@ -16,9 +16,10 @@ return new class extends Migration
             $table->unsignedBigInteger('product_id')->default();
             $table->unsignedBigInteger('customer_id')->default();
             $table->dateTime('date')->default(now());
-            $table->decimal('price',8,2)->default();
-            $table -> string ('status') -> nullable();
-            $table -> string ('registerby') -> nullable();
+            // $table->decimal('price',8,2)->default();
+            $table->decimal('total',8,2)->default();
+            $table -> string ('status') -> default(1);
+            $table -> string ('registerby')->nullable();
             $table->timestamps();
         
             $table->foreign('product_id')

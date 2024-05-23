@@ -15,7 +15,7 @@
 			<div class="row">
 				<div class="col-md-12">
 					<div class="card">
-						<div class="card-header" style="background-color: #733F2D; color:white;">
+						<div class="card-header" style="background-color: #A6774E; color:white;">
 							<h3>@yield('title')</h3>
 						</div>
 						<form method="POST" action="{{ route('products.update',$product) }}" enctype="multipart/form-data">
@@ -55,10 +55,10 @@
 							<div class="card-footer">
 								<div class="row">
 									<div class="col-lg-2 col-xs-4">
-										<button type="submit" class="btn btn-block btn-flat" style="background-color: #733F2D; color:white;">Registrar</button>
+										<button type="submit" class="btn btn-block btn-flat" style="background-color: #A6774E; color:white;">Registrar</button>
 									</div>
 									<div class="col-lg-2 col-xs-4">
-										<a href="{{ route('products.index') }}" class="btn btn-block btn-flat" style="background-color: #733F2D; color:white;">Atras</a>
+										<a href="{{ route('products.index') }}" class="btn btn-block btn-flat" style="background-color: #A6774E; color:white;">Atras</a>
 									</div>
 								</div>
 							</div>

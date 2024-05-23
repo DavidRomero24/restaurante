@@ -11,7 +11,7 @@ class Order extends Model
 
     protected $table='orders';
 
-    protected $fillable=['product_id','customer_id','date','price','status'];
+    protected $fillable=['product_id','customer_id','date','total','status'];
 
     protected $guarded=['id','status', 'registerby','created_at','updated_at'];
 
@@ -21,5 +21,10 @@ class Order extends Model
 
     public function product(){
         return $this->belongsTo(Product::class);
+    }
+
+    public function orderDetails()
+    {
+        return $this->hasMany(OrderDetail::class, 'order_id');
     }
 }

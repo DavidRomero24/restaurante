@@ -25,7 +25,7 @@ class ProductRequest extends FormRequest
             return [
                 'name' => 'required|regex:/^[\pL\s\-]+$/u',
 				'description' => 'nullable',
-				'price' => 'nullable',
+				// 'price' => 'nullable',
 				'date caducidade' => 'nullable',
 				'amount' => 'required',
 				'image' => 'nullable|mimes:jpg,jpeg,png|max:3000',

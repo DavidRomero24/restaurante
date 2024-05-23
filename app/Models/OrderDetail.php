@@ -9,18 +9,22 @@ class OrderDetail extends Model
 {
     use HasFactory;
 
-    public $timestamps = false;
-
     protected $fillable = [
-        'quantity',
-        'product_id',
         'order_id',
+        'product_id',
+        'amount',
+        'subtotal',
+        'registerby'
     ];
 
-    protected $guarded = ['id'];
-
+    
+    protected $guarded=['id','status', 'registerby','created_at','updated_at'];
     public function product() {
         return $this->belongsTo(Product::class);
+    }
+
+    public function customer() {
+        return $this->belongsTo(Customer::class);
     }
 
     public function order() {

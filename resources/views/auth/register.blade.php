@@ -51,7 +51,7 @@
                     <div class="row">
                         <!-- /.col -->
                         <div class="col-12">
-                            <button type="submit" class="btn btn-danger btn-block">
+                            <button type="submit" class="btn btn-block" style="background-color: #A6774E;">
                                 {{ __('Register') }}
                             </button>
                         </div>
@@ -59,7 +59,7 @@
                     </div>
                 </form>
 
-                <a href="login" class="text-center text-danger">I already have an account</a>
+                <a href="login" style="color: #A6774E" class="text-center">I already have an account</a>
             </div>
             <!-- /.form-box -->
         </div><!-- /.card -->

@@ -15,10 +15,10 @@
 			<div class="row">
 				<div class="col-12">
 					<div class="card">
-						<div class="card-header" style="font-size: 1.75rem;font-weight: 500; line-height: 1.2; margin-bottom: 0.5rem; background-color: #733F2D; color:white;">
+						<div class="card-header" style="font-size: 1.75rem;font-weight: 500; line-height: 1.2; margin-bottom: 0.5rem; background-color: #A6774E; color:white;">
 							@yield('title')
 
-							<a href="{{ route('products.create') }}" class="btn btn-light float-right" title="Nuevo"><i style="color: #733F2D;" class="fas fa-plus nav-icon"></i></a>
+							<a href="{{ route('products.create') }}" class="btn btn-light float-right" title="Nuevo"><i style="color: #A6774E;" class="fas fa-plus nav-icon"></i></a>
 
 						</div>
 						<div class="card-body">
@@ -153,7 +153,7 @@
 				/*"buttons": {
 					"print": "Imprimir",
 					"colvis": "Visibilidad Columnas"
-					/*"create": "Nuevo",
+					/*"create": "New",
 					"edit": "Cambiar",
 					"remove": "Borrar",
 					"copy": "Copiar",
