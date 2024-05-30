@@ -25,7 +25,6 @@ class OrderRequest extends FormRequest
             return [
                 'product_id' => 'nullable',
 				'customer_id' => 'nullable',
-				// 'date' => 'nullable',
 				'price' => 'nullable',
                 'total' => 'nullable',
                 'status' => 'nullable',
@@ -36,8 +35,8 @@ class OrderRequest extends FormRequest
             return[
                 'product_id' => 'nullable',
 				'customer_id' => 'nullable',
-				// 'date' => 'nullable',
 				'price' => 'nullable',
+                'total' => 'nullable',
                 'status' => 'nullable',
                 'registerby' => 'nullable',	
             ];

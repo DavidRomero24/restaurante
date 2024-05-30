@@ -70,6 +70,7 @@
                                             <th>Amount</th>
                                             <th>Price</th>
                                             <th>Subtotal</th>
+                                            <th></th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -79,6 +80,13 @@
                                                 <td>{{ $detail->amount }}</td>
                                                 <td>{{ $detail->product->price }}</td>
                                                 <td>{{ $detail->subtotal }}</td>
+                                                <td>
+                                                <form class="d-inline delete-form" action="{{ route('orders.destroy', $detail) }}" method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-danger btn-sm" title="Delete"><i class="fas fa-trash-alt"></i></button>
+                                            </form>
+                                                </td>
                                             </tr>
                                         @endforeach
                                     </tbody>
@@ -95,10 +103,8 @@
                         <div class="row no-print">
                             <div class="col-12">
                                 <a href="{{ route('orders.index') }}" class="btn" style="background-color: #A6774E;"><i class="fas fa-backward"></i> Back</a>
-                                <button type="button" class="btn btn-success float-right"><i class="far fa-credit-card"></i> Submit Payment</button>
-                                <button type="button" class="btn float-right" style="background-color: #A6774E; margin-right: 5px;">
-                                    <i class="fas fa-download"></i> Generate PDF
-                                </button>
+                                <!-- <button type="button" class="btn btn-success float-right"><i class="far fa-credit-card"></i> Submit Payment</button> -->
+                                    <!-- <a href="#" style=" margin-right: 5px; " class="btn float-right btn-success btn-sm" title="Edit"><i style="padding: 7px 7px;" class="fas fa-pencil-alt"></i></a> -->
                             </div>
                         </div>
                     </div>

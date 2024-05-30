@@ -127,7 +127,7 @@ public function show($id)
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $id)
+    public function update(OrderRequest $request, $id)
 {
     $order = Order::findOrFail($id);
     $order->customer_id = $request->input('customer');
@@ -157,9 +157,8 @@ public function show($id)
         $order->delete();
 
         return redirect()->route('orders.index')->with('Eliminar', 'Ok');
-        // $order -> delete();
-        // return redirect()->route('orders.index')->with('Eliminar', 'Ok');
     }
+    
     public function changestatusorder(Request $request)
 	{
 		$order = Order::find($request->order_id);
