@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class OrderRequest extends FormRequest
+class OrderDeteilRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -27,7 +27,7 @@ class OrderRequest extends FormRequest
 				'customer_id' => 'nullable',
 				'price' => 'nullable',
                 'total' => 'nullable',
-                'subtotal'=> 'nullable',
+                'subtotal'=>'nullable',
                 'status' => 'nullable',
                 'registerby' => 'nullable',	
 

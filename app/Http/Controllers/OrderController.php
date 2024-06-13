@@ -10,8 +10,10 @@ use App\Models\User;
 use App\Http\Requests\OrderRequest;
 use App\Models\OrderDetail;
 use Carbon\Carbon;
-use Exception;
+use \Exception;
 use Illuminate\Support\Facades\DB;
+use Barryvdh\DomPDF\Facade\Pdf;
+
 
 class OrderController extends Controller
 {
@@ -20,25 +22,10 @@ class OrderController extends Controller
      */
     public function index()
     {
-        // Obtener todas las órdenes junto con la información del cliente.
         $orders = Order::with('customer')->get();
-    
-        // Retornar la vista y pasar los datos.
+        
         return view('orders.index', compact('orders'));
-        // $orders=Order::all();
-        // $orders = Order::select('customers.name', 'customers.identification_document', 'orders.id', 'orders.total', 'orders.date','orders.status','orders.registered_by')
-        //     ->join('customers', 'orders.customer_id', '=', 'customers.id')
-        //     ->get();
-        // return view('orders.index', compact('orders'));
-
-        //$sales = Sale::select('customers.first_name','customers.identification_document', 'sales.sale_date','sales.total_sale','sales.status')
-     //-> join ('customers', 'customer_id', '=', 'sales.customer_id')->get();
-        //$sales = Sale::with('customer')->get();
-
-        // $orders = Order::select('customers.name', 'customers.identification_document', 'orders.id', 'orders.price', 'orders.date','orders.status','orders.registerby')
-        //     ->join('customers', 'orders.customer_id', '=', 'customers.id')
-        //     ->get();
-        // return view('orders.index', compact('orders'));
+        
     }
 
     /**
@@ -58,39 +45,61 @@ class OrderController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(OrderRequest $request)
-    {   
-        
-        $validated = $request->validate([
-            'customer' => 'required|exists:customers,id',
-            'date' => 'required|date',
-            'orderDetails' => 'required|json',
-        ]);
+    {
+        DB::beginTransaction();
 
-        $orderDetails = json_decode($validated['orderDetails'], true);
-        $total = array_reduce($orderDetails, function ($carry, $item) {
-            return $carry + $item['subtotal'];
-        }, 0);
-
-        $order = Order::create([
-            'customer_id' => $validated['customer'],
-            'date' => $validated['date'],
-            'total' => $total,
-        ]);
-
-        foreach ($orderDetails as $detail) {
-            OrderDetail::create([
-                'order_id' => $order->id,
-                'product_id' => $detail['product_id'],
-                'amount' => $detail['amount'],
-                'price' => $detail['price'],
-                'subtotal' => $detail['subtotal'],
+        try {
+            $order = Order::create([
+                'date_order' => Carbon::now()->toDateTimeString(),
+                'total' => $request->total,
+                'route' => "Por hacer",
+                'client_id' => Customer::find($request->customer)->id,
+                'status' => 1,
+                'registered_by' => $request->registered_by
             ]);
-        }
 
-        return redirect()->route('orders.index')->with('success', 'Order created successfully.');
-    
-        
+            $rawProductId = $request->product_id;
+            $rawAmount = $request->amount;
+
+            for ($i = 0; $i < count($rawProductId); $i++) {
+                $product = Product::find($rawProductId[$i]);
+                $amount = $rawAmount[$i];
+
+                $order->orderDetails()->create([
+                    'product_id' => $product->id,
+                    'amount' => $amount,
+                ]);
+            }
+
+            $order->save();
+
+            // Generate bill (PDF).
+            $pdfName = 'uploads/bills/bill_' . $order->id . '_' . Carbon::now()->format('YmdHis') . '.pdf';
+
+            $order = Order::find($order->id);
+            $client = Customer::where("id", $order->customer_id)->first();
+            $details = OrderDetail::with('product')
+                ->where('order_details.order_id', '=', $order->id)
+                ->get();
+
+            $pdf = PDF::loadView('orders.bill', compact("order", "client", "details"))
+                ->setPaper('letter')
+                ->output();
+
+            file_put_contents($pdfName, $pdf);
+
+            $order->route = $pdfName;
+            $order->save();
+
+            DB::commit();
+
+            return redirect()->route("orders.index")->with("success", "The orders has been created.");
+        } catch (Exception $e) {
+            DB::rollBack();
+            return redirect()->back()->with("success", $e->getMessage());
+        }
     }
+
 
     /**
      * Display the specified resource.
@@ -158,6 +167,8 @@ public function show($id)
 
         return redirect()->route('orders.index')->with('Eliminar', 'Ok');
     }
+
+    
     
     public function changestatusorder(Request $request)
 	{

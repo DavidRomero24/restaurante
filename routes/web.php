@@ -37,6 +37,7 @@ Route::group(['middleware'=>['auth']], function(){
     Route::resource('orders', OrderController::class);
     Route::get('changestatusorder', [OrderController::class, 'changestatusorder'])->name('changestatusorder');
     Route::get('/orders/{id}', [OrderController::class, 'show'])->name('orders.show');
+
 });
 
 Route::get('/about', function () { 
@@ -65,6 +66,18 @@ Route::prefix('admin')->group(function () {
     }); 
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('/test-403', function(){
+    abort(403, 'Forbidden');
+});
+
+Route::get('/test-419', function(){
+    abort(419);
+});
+
+Route::get('/test-500', function(){
+    abort(500);
+});
 
 Auth::routes();
 

@@ -44,9 +44,9 @@
             <!-- small box -->
             <div class="small-box bg-success">
               <div class="inner">
-                <h3>{{$orderCountDay}} / {{$orderTotalDay}}<sup style="font-size: 20px"></sup></h3>
+                <h3>{{$orderCountDay}} / ${{$orderTotalDay}}<sup style="font-size: 20px"></sup></h3>
 
-                <p>Sales Orders</p>
+                <p>Sales Orders / Total sales Orders</p>
               </div>
               <div class="icon">
                 <i class="ion ion-stats-bars"></i>
